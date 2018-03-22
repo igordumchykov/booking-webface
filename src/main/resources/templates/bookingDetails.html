@@ -1,0 +1,59 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Book ticket</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta charset="utf-8"/>
+    <link href="/css/main.css" th:href="@{/css/main.css}" rel="stylesheet" media="screen"/>
+</head>
+<body>
+<nav>
+    <ul>
+        <li>BrownField Airline</li>
+        <li><a th:href="@{/v1/}">Search</a></li>
+        <li><a th:href="@{/v1/booking/search}">CheckIn</a></li>
+    </ul>
+</nav>
+<div align="center" class="form-style-8">
+    <h2>Booking Search</h2>
+    <form action="#" th:action="@{/v1/booking/get/details}" th:object="${uiData}" method="post">
+        <table>
+            <tr>
+                <td>Booking Reference</td>
+                <td><input type="text" th:field="*{bookingId}"/></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><input type="submit" value="Search"/></td>
+            </tr>
+        </table>
+    </form>
+    <div th:if="${uiData.selectedTrip != null}">
+        <h3>
+            <table>
+                <tr>
+                    <td th:text="${uiData.selectedTrip.busNumber}"/>
+                    <td th:text="${uiData.selectedTrip.origin}"/>
+                    <td th:text="${uiData.selectedTrip.destination}"/>
+                    <td th:text="${uiData.selectedTrip.tripDate}"/>
+
+                    <td th:text="${uiData.passenger.firstName}"/>
+                    <td th:text="${uiData.passenger.lastName}"/>
+
+                    <td>
+                        <form action="#" th:action="@{/v1/booking/checkIn}" method="post">
+                            <input type="hidden" name="firstName" th:value="${uiData.passenger.firstName}"/>
+                            <input type="hidden" name="lastName" th:value="${uiData.passenger.lastName}"/>
+                            <input type="hidden" name="busNumber" th:value="${uiData.selectedTrip.busNumber}"/>
+                            <input type="hidden" name="tripDate" th:value="${uiData.selectedTrip.tripDate}"/>
+                            <input type="hidden" name="bookingId" th:value="${uiData.bookingId}"/>
+                            <button type="submit">chekin</button>
+                        </form>
+                    </td>
+                </tr>
+            </table>
+        </h3>
+    </div>
+</div>
+</body>
+</html>

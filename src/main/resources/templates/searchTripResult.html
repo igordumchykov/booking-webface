@@ -1,0 +1,66 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Book ticket</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta charset="utf-8"/>
+    <link href="/css/main.css" th:href="@{/css/main.css}" rel="stylesheet" media="screen"/>
+    <script>
+        function rowClicked(value) {
+            alert(value);
+            //location.href = "/search?param=" + value;
+            location.href = "/search;
+        }
+    </script>
+</head>
+<body>
+<nav>
+    <ul>
+        <li>BrownField Airline</li>
+        <li><a th:href="@{/v1/}">Search</a></li>
+        <li><a th:href="@{/v1/booking/get}">CheckIn</a></li>
+    </ul>
+</nav>
+<div align="center" class="form-style-8">
+    <h2>Available Trips</h2>
+
+
+    <table>
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>Bus</th>
+            <th>From</th>
+            <th>To</th>
+            <th>Date</th>
+            <th>Price</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr th:each="trip, iterStat : ${uiData.trips}">
+            <td th:text="${trip.id}"/>
+            <td th:text="${trip.busNumber}"/>
+            <td th:text="${trip.origin}"/>
+            <td th:text="${trip.destination}"/>
+            <td th:text="${trip.tripDate}"/>
+            <td th:text="${trip.price.priceAmount}"/>
+            <td>
+                <form action="#" th:action="@{/v1/booking/book}" method="post">
+                    <input type="hidden" name="id" th:value="${trip.id}"/>
+                    <input type="hidden" name="busNumber" th:value="${trip.busNumber}"/>
+                    <input type="hidden" name="origin" th:value="${trip.origin}"/>
+                    <input type="hidden" name="destination" th:value="${trip.destination}"/>
+                    <input type="hidden" name="tripDate" th:value="${trip.tripDate}"/>
+                    <input type="hidden" name="price.priceAmount" th:value="${trip.price.priceAmount}"/>
+                    <button type="submit">book</button>
+                </form>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+</div>
+</body>
+</html>

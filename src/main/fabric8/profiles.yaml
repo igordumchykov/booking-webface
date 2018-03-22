@@ -1,0 +1,7 @@
+- name: default
+  generator:
+    includes:
+      - spring-boot
+    config:
+      spring-boot:
+        name: multiplexor88/%a:%v

@@ -1,0 +1,18 @@
+security:
+  basic:
+    enabled: false
+
+client:
+  booking:
+    service: book-service
+    requests:
+      create: /create
+      get: /get/{id}
+  checkin:
+    service: checkin-service
+    requests:
+      create: /create
+  search:
+    service: search-service
+    requests:
+      get: /get

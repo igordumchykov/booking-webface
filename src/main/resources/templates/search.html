@@ -1,0 +1,42 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Book ticket</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta charset="utf-8"/>
+    <link href="/css/main.css" th:href="@{/css/main.css}" rel="stylesheet" media="screen"/>
+</head>
+<body>
+
+<nav>
+    <ul>
+        <li>BrownField Airline</li>
+        <li><a th:href="@{/v1/}">Search</a></li>
+        <li><a th:href="@{/v1/booking/get}">CheckIn</a></li>
+    </ul>
+</nav>
+<div align="center" class="form-style-8">
+    <h2>Flight Search</h2>
+    <form action="#" th:action="@{/v1/trip/search}" th:object="${uiData.searchQuery}" method="post">
+        <table>
+            <tr>
+                <td>From</td>
+                <td><input type="text" th:field="*{origin}"/></td>
+            </tr>
+            <tr>
+                <td>To</td>
+                <td><input type="text" th:field="*{destination}"/></td>
+            </tr>
+            <tr>
+                <td>Date</td>
+                <td><input type="text" th:field="*{tripDate}"/></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><input type="submit" value="Submit"/></td>
+            </tr>
+        </table>
+    </form>
+</div>
+</body>
+</html>

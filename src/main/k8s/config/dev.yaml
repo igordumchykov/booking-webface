@@ -1,0 +1,40 @@
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: webface-service
+  namespace: dev
+data:
+  application.yaml: |-
+
+    spring:
+      application:
+        name: webface-service
+
+    server:
+      port: 8001
+
+    security:
+      user:
+        name: guest
+        password: guest123
+
+    logging:
+      level:
+        com:
+          jdum:
+            booking: INFO
+
+    client:
+      booking:
+        service: book-service
+        requests:
+          create: /create
+          get: /get/{id}
+      checkin:
+        service: checkin-service
+        requests:
+          create: /create
+      search:
+        service: search-service
+        requests:
+          get: /get
