@@ -4,4 +4,4 @@
       - spring-boot
     config:
       spring-boot:
-        name: multiplexor88/%a:%v
+        name: multiplexor88/%a:%l
